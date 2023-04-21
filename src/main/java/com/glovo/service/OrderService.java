@@ -27,10 +27,10 @@ public class OrderService {
 
     public Optional<OrderDTO> get(Integer id) {
         return orderRepository.findById(id)
-                .map(this::getOrderWithProducts);
+                .map(this::getOrderDTOWithProducts);
     }
 
-    private OrderDTO getOrderWithProducts(Order order) {
+    private OrderDTO getOrderDTOWithProducts(Order order) {
         OrderDTO orderDTO = OrderConverter.orderToOrderDTO(order);
         orderDTO.setProductDTOS(order.getProducts()
                 .stream()
@@ -44,7 +44,7 @@ public class OrderService {
     public List<OrderDTO> getAll() {
         List<OrderDTO> orderEntities = new ArrayList<>();
         orderRepository.findAll()
-                .forEach(order -> orderEntities.add(getOrderWithProducts(order)));
+                .forEach(order -> orderEntities.add(getOrderDTOWithProducts(order)));
         return orderEntities;
     }
 
