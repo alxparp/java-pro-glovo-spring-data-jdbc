@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Util {
 
-    public static boolean checkNull(Object... vars) {
+    public static boolean anyNull(Object... vars) {
         for (Object obj : vars) {
             if (Objects.isNull(obj))
                 return true;

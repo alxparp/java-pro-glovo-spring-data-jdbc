@@ -2,6 +2,7 @@ package com.glovo.controller;
 
 import com.glovo.model.OrderDTO;
 import com.glovo.service.OrderService;
+import com.glovo.utils.Util;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public OrderDTO get(@PathVariable Integer id) {
-        return orderService.get(id).orElseThrow();
+        return orderService.get(id);
     }
 
     @GetMapping
@@ -28,11 +29,15 @@ public class OrderController {
 
     @PostMapping
     public void save(@RequestBody OrderDTO orderDTO) {
+        if (Util.anyNull(orderDTO.getDate()))
+            throw new IllegalArgumentException("Can't save order without date");
         orderService.save(orderDTO);
     }
 
     @PutMapping
     public void update(@RequestBody OrderDTO orderDTO) {
+        if (Util.anyNull(orderDTO.getId()))
+            throw new IllegalArgumentException("Can't update order without id");
         orderService.update(orderDTO);
     }
 

@@ -2,6 +2,7 @@ package com.glovo.controller;
 
 import com.glovo.model.ProductDTO;
 import com.glovo.service.ProductService;
+import com.glovo.utils.Util;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ProductDTO get(@PathVariable Integer id) {
-        return productService.get(id).orElseThrow();
+        return productService.get(id);
     }
 
     @GetMapping
@@ -28,11 +29,15 @@ public class ProductController {
 
     @PostMapping
     public void save(@RequestBody ProductDTO productDTO) {
+        if (Util.anyNull(productDTO.getName(), productDTO.getCost()))
+            throw new IllegalArgumentException("Can't save null product");
         productService.save(productDTO);
     }
 
     @PutMapping
     public void update(@RequestBody ProductDTO productDTO) {
+        if (Util.anyNull(productDTO.getId()))
+            throw new IllegalArgumentException("Can't update null product");
         productService.update(productDTO);
     }
 
