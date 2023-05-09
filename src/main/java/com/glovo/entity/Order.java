@@ -21,7 +21,7 @@ public class Order {
     private Integer orderId;
     private LocalDate date;
     private Double cost;
-    @MappedCollection(idColumn = "order_id")
+    @MappedCollection(idColumn = "ORDER_ID")
     private Set<ProductRef> products;
 
     public void addProduct(Product product) {
