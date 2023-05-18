@@ -3,6 +3,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: root
+
   sql:
     init:
-      schema-locations: classpath:schema-prod.sql
+      mode: embedded
+      schema-locations: classpath:props/schema-prod.sql
+      data-locations: classpath:props/data-prod.sql

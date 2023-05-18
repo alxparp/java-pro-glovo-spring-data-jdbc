@@ -5,12 +5,12 @@ import lombok.Data;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("ORDER_PRODUCT")
+@Table("USER_ROLE")
 @Data
 @AllArgsConstructor
-public class ProductRef {
+public class RoleRef {
 
-    @Column("PRODUCT_ID")
-    private Integer productId;
+    @Column("ROLE_ID")
+    private Integer roleId;
 
 }
