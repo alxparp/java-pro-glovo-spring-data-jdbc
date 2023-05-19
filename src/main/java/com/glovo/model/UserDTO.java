@@ -2,16 +2,13 @@ package com.glovo.model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto
+@Data
+@Builder
+public class UserDTO
 {
     @NotEmpty(message = "Username should not be empty")
     private String username;

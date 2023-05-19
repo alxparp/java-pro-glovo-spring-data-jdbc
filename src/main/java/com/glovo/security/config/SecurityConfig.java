@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import static com.glovo.security.UserPermission.COURSE_WRITE;
+import static com.glovo.security.UserPermission.WRITE;
 import static com.glovo.security.UserRole.ADMIN;
 import static com.glovo.security.UserRole.ADMINTRAINEE;
 
@@ -34,12 +34,11 @@ public class SecurityConfig {
         final String apiTemplate = "/api/**";
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/index").permitAll()
+                        authorize.requestMatchers("/register/**", "/index").permitAll()
                                 .requestMatchers("/users").hasRole(ADMIN.name())
-                                .requestMatchers(HttpMethod.DELETE, apiTemplate).hasAuthority(COURSE_WRITE.getPermission())
-                                .requestMatchers(HttpMethod.POST, apiTemplate).hasAuthority(COURSE_WRITE.getPermission())
-                                .requestMatchers(HttpMethod.PUT, apiTemplate).hasAuthority(COURSE_WRITE.getPermission())
+                                .requestMatchers(HttpMethod.DELETE, apiTemplate).hasAuthority(WRITE.getPermission())
+                                .requestMatchers(HttpMethod.POST, apiTemplate).hasAuthority(WRITE.getPermission())
+                                .requestMatchers(HttpMethod.PUT, apiTemplate).hasAuthority(WRITE.getPermission())
                                 .requestMatchers(HttpMethod.GET, apiTemplate).hasAnyRole(ADMIN.name(), ADMINTRAINEE.name())
                 ).formLogin(
                         form -> form
@@ -56,8 +55,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager() {
-        return new ProviderManager(daoAuthenticationProvider());
+    public PasswordEncoder passwordConfig() {
+        return new BCryptPasswordEncoder(10);
     }
 
     @Bean
@@ -69,8 +68,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordConfig() {
-        return new BCryptPasswordEncoder(10);
+    public AuthenticationManager authenticationManager() {
+        return new ProviderManager(daoAuthenticationProvider());
     }
 
 

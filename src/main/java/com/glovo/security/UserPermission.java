@@ -1,10 +1,8 @@
 package com.glovo.security;
 
 public enum UserPermission {
-    STUDENT_READ("student:read"),
-    STUDENT_WRITE("student:write"),
-    COURSE_READ("course:read"),
-    COURSE_WRITE("course:write");
+    READ("read"),
+    WRITE("write");
 
     private final String permission;
 

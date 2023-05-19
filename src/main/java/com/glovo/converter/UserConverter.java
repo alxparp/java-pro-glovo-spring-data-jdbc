@@ -1,14 +1,14 @@
 package com.glovo.converter;
 
 import com.glovo.entity.User;
-import com.glovo.model.UserDto;
+import com.glovo.model.UserDTO;
 
 import java.util.HashSet;
 
 public class UserConverter {
 
-    public static UserDto userToUserDTO(User user) {
-        UserDto userDto = new UserDto();
+    public static UserDTO userToUserDTO(User user) {
+        UserDTO userDto = new UserDTO();
         userDto.setUsername(user.getUsername());
         userDto.setPassword(user.getPassword());
         userDto.setFirstName(user.getFirstName());
@@ -17,7 +17,7 @@ public class UserConverter {
         return userDto;
     }
 
-    public static User userDTOToUser(UserDto userDto) {
+    public static User userDTOToUser(UserDTO userDto) {
         User user = new User();
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());

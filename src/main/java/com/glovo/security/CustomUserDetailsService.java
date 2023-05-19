@@ -54,7 +54,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .build();
     }
 
-    public Set<SimpleGrantedAuthority> getGrantedAuthorities(List<Permission> permissions, List<Role> roles) {
+    private Set<SimpleGrantedAuthority> getGrantedAuthorities(List<Permission> permissions, List<Role> roles) {
         Set<SimpleGrantedAuthority> grantedAuthorities = permissions.stream()
                 .map(permission -> new SimpleGrantedAuthority(permission.getPermissionName()))
                 .collect(Collectors.toSet());

@@ -8,4 +8,4 @@ spring:
     init:
       mode: embedded
       schema-locations: classpath:props/schema-prod.sql
-      data-locations: classpath:props/data-prod.sql
+      data-locations: classpath:props/data.sql

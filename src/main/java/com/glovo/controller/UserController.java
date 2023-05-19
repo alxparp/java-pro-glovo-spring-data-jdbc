@@ -1,7 +1,7 @@
 package com.glovo.controller;
 
 import com.glovo.entity.User;
-import com.glovo.model.UserDto;
+import com.glovo.model.UserDTO;
 import com.glovo.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -34,18 +34,18 @@ public class UserController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
-        UserDto user = new UserDto();
+        UserDTO user = new UserDTO();
         model.addAttribute("user", user);
         return "register";
     }
 
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute("user") UserDto userDto,
+    public String registration(@Valid @ModelAttribute("user") UserDTO userDto,
                                BindingResult result,
                                Model model){
         User existingUser = userService.findUserByUsername(userDto.getUsername());
 
-        if(existingUser != null && existingUser.getUsername() != null && !existingUser.getUsername().isEmpty()){
+        if(existingUser != null){
             result.rejectValue("username", null,
                     "There is already an account registered with the same username");
         }
@@ -61,7 +61,7 @@ public class UserController {
 
     @GetMapping("/users")
     public String users(Model model){
-        List<UserDto> users = userService.findAllUsers();
+        List<UserDTO> users = userService.findAllUsers();
         model.addAttribute("users", users);
         return "users";
     }

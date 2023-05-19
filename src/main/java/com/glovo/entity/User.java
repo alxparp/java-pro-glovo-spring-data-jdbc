@@ -3,6 +3,7 @@ package com.glovo.entity;
 import com.glovo.entity.ref.ProductRef;
 import com.glovo.entity.ref.RoleRef;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -20,6 +21,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class User implements Persistable<String> {
 
     @Id
