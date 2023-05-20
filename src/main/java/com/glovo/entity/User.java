@@ -1,6 +1,5 @@
 package com.glovo.entity;
 
-import com.glovo.entity.ref.ProductRef;
 import com.glovo.entity.ref.RoleRef;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +10,7 @@ import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
 import java.util.Set;
 
 @Table("USER")

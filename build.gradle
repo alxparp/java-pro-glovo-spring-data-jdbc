@@ -24,13 +24,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0'
 	implementation 'com.google.guava:guava:31.1-jre'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	annotationProcessor 'org.projectlombok:lombok'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	runtimeOnly group: 'com.h2database', name: 'h2', version: '1.3.148'
-	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0'
+	runtimeOnly 'com.h2database:h2:1.3.148'
 
 
 }

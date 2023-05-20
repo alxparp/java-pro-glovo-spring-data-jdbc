@@ -4,17 +4,12 @@ import com.glovo.DummyObjects;
 import com.glovo.converter.UserConverter;
 import com.glovo.entity.User;
 import com.glovo.model.UserDTO;
-import com.glovo.repository.RoleRepository;
-import com.glovo.repository.UserRepository;
-import com.glovo.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -58,7 +53,7 @@ class UserControllerTest {
     }
 
     ResultActions create(UserDTO userDTO) throws Exception {
-        return mockMvc.perform(post("/register/save")
+        return mockMvc.perform(post("http://localhost:" + port + "/register/save")
                 .contentType(APPLICATION_FORM_URLENCODED)
                 .param("username", userDTO.getUsername())
                 .param("password", userDTO.getPassword())
