@@ -7,20 +7,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("PRODUCT")
+@Table("PERMISSION")
 @Data
 @AllArgsConstructor
 @Builder
-public class Product {
+public class Permission {
 
     @Id
-    @Column("PRODUCT_ID")
-    private Integer productId;
+    @Column("PERMISSION_ID")
+    private Integer permissionId;
 
-    @Column("NAME")
-    private String name;
-
-    @Column("COST")
-    private Double cost;
+    @Column("PERMISSION_NAME")
+    private String permissionName;
 
 }
