@@ -31,13 +31,16 @@ class UserServiceTest {
     private RoleRepository roleRepository;
     @Mock
     private PasswordEncoder passwordEncoder;
+    private ConfirmationTokenService confirmationTokenService;
     private UserService userService;
     private User user;
     private Role role;
 
+    private EmailService emailService;
+
     @BeforeEach
     void setUp() {
-        userService = new UserService(passwordEncoder, roleRepository, userRepository);
+        userService = new UserService(passwordEncoder, roleRepository, userRepository, confirmationTokenService, emailService);
         user = DummyObjects.getUser();
         role = DummyObjects.getRole();
     }

@@ -1,4 +1,4 @@
-package com.glovo.security;
+package com.glovo.service;
 
 import com.glovo.entity.Permission;
 import com.glovo.entity.Role;
@@ -50,6 +50,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
+                .accountLocked(user.isLocked())
+                .disabled(user.isDisabled())
                 .authorities(getGrantedAuthorities(permissions, roles))
                 .build();
     }

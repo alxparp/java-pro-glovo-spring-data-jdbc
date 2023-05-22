@@ -1,6 +1,6 @@
 package com.glovo.security.config;
 
-import com.glovo.security.CustomUserDetailsService;
+import com.glovo.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static com.glovo.security.UserPermission.WRITE;
@@ -32,9 +33,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         final String apiTemplate = "/api/**";
-        http.csrf().disable()
+        http
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**", "/index").permitAll()
+                        authorize.requestMatchers("/register/**", "/index", "/confirm").permitAll()
                                 .requestMatchers("/users").hasRole(ADMIN.name())
                                 .requestMatchers(HttpMethod.DELETE, apiTemplate).hasAuthority(WRITE.getPermission())
                                 .requestMatchers(HttpMethod.POST, apiTemplate).hasAuthority(WRITE.getPermission())
