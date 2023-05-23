@@ -45,8 +45,8 @@ public class User implements Persistable<String> {
     @MappedCollection(idColumn = "USERNAME")
     private Set<RoleRef> roles;
 
-    @MappedCollection(keyColumn = "USERNAME", idColumn = "USERNAME")
-    private Set<ConfirmationToken> tokens;
+//    @MappedCollection(keyColumn = "USERNAME", idColumn = "USERNAME")
+//    private Set<ConfirmationToken> tokens;
 
     public void addRole(Role role) {
         roles.add(new RoleRef(role.getRoleId()));

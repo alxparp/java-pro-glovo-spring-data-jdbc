@@ -15,6 +15,8 @@ public class DummyObjects {
                 .email("mykola@gmail.com")
                 .username("mykola")
                 .password(new BCryptPasswordEncoder().encode("password"))
+                .disabled(true)
+                .locked(false)
                 .roles(new HashSet<>())
                 .build();
         user.addRole(getRole());

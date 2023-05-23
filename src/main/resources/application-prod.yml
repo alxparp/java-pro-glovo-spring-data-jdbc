@@ -6,6 +6,6 @@ spring:
 
   sql:
     init:
-      mode: always
+      mode: embedded
       schema-locations: classpath:props/schema-prod.sql
       data-locations: classpath:props/data.sql
