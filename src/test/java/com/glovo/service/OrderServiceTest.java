@@ -14,6 +14,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.time.LocalDate;
 import java.util.HashSet;

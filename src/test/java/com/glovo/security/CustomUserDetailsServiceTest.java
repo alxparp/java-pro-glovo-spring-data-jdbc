@@ -7,6 +7,7 @@ import com.glovo.entity.User;
 import com.glovo.repository.PermissionRepository;
 import com.glovo.repository.RoleRepository;
 import com.glovo.repository.UserRepository;
+import com.glovo.service.CustomUserDetailsService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-@Profile("prod")
+@Profile("dev")
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ IllegalArgumentException.class })
@@ -21,11 +21,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
-    @ExceptionHandler({DataAccessException.class })
-    protected ResponseEntity<Object> handleDataAccess(
-            Exception ex, WebRequest request) {
-        return handleExceptionInternal(ex, "Make sure all data is spelled correctly",
-                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
-    }
+//    @ExceptionHandler({DataAccessException.class })
+//    protected ResponseEntity<Object> handleDataAccess(
+//            Exception ex, WebRequest request) {
+//        return handleExceptionInternal(ex, "Make sure all data is spelled correctly",
+//                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+//    }
 
 }

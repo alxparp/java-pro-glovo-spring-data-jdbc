@@ -8,6 +8,7 @@ import com.glovo.repository.RoleRepository;
 import com.glovo.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.StreamSupport;
@@ -30,7 +31,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void saveUser(UserDTO userDto) {
+    public User saveUser(UserDTO userDto) {
         User user = UserConverter.userDTOToUser(userDto);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -38,7 +39,7 @@ public class UserService {
         Role role = roleRepository.findByRoleName(ADMIN.name());
         user.addRole(role);
 
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public User findUserByUsername(String username) {
@@ -51,5 +52,11 @@ public class UserService {
                         .map(UserConverter::userToUserDTO)
                         .toList();
     }
+
+    public boolean enableUser(String username) {
+        return userRepository.enableUser(username);
+    }
+
+
 
 }

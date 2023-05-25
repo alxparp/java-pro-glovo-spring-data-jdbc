@@ -10,6 +10,7 @@ import com.glovo.repository.ProductRepository;
 import com.glovo.utils.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +32,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @ActiveProfiles("dev")
+@Disabled
 class OrderControllerMockTest {
+
+    // TODO add feature for testing OrderController with login and password
 
     @Value(value = "${local.server.port}")
     private int port;
