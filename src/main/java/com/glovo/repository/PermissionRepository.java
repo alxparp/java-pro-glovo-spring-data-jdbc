@@ -1,7 +1,9 @@
 package com.glovo.repository;
 
 import com.glovo.entity.Permission;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PermissionRepository extends CrudRepository<Permission, Integer> {
+@Repository
+public interface PermissionRepository extends JpaRepository<Permission, Integer> {
 }

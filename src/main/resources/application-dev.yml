@@ -1,26 +1,18 @@
-#spring:
-#  datasource:
-#    url: jdbc:h2:mem:testdb
-#    driver-class-name: org.h2.Driver
-#    username: sa
-#    password: sa
-#  h2:
-#    console:
-#      enabled: true
-#      path: h2
-#  sql:
-#    init:
-#      schema-locations: classpath:props/schema-dev.sql
-#      data-locations: classpath:props/data.sql
-
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/registration
-    username: postgres
-    password: root
-
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath:props/schema-dev.sql, classpath:props/schema-prod.sql
-      data-locations: classpath:props/data.sql
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  h2:
+    console:
+      enabled: true
+      path: h2
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    show-sql: true

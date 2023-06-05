@@ -30,10 +30,6 @@ class CustomUserDetailsServiceTest {
 
     @Mock
     private UserRepository userRepository;
-    @Mock
-    private RoleRepository roleRepository;
-    @Mock
-    private PermissionRepository permissionRepository;
     private CustomUserDetailsService detailsService;
     private User user;
     private Role role;
@@ -41,7 +37,7 @@ class CustomUserDetailsServiceTest {
 
     @BeforeEach
     void setUp() {
-        detailsService = new CustomUserDetailsService(userRepository, roleRepository, permissionRepository);
+        detailsService = new CustomUserDetailsService(userRepository);
         user = DummyObjects.getUser();
         role = DummyObjects.getRole();
         permission = DummyObjects.getPermission();
@@ -59,8 +55,6 @@ class CustomUserDetailsServiceTest {
                 ))
                 .build();
         when(userRepository.findById(anyString())).thenReturn(Optional.of(user));
-        when(roleRepository.findById(anyInt())).thenReturn(Optional.of(role));
-        when(permissionRepository.findById(anyInt())).thenReturn(Optional.of(permission));
 
         // when
         UserDetails userDetailsActual = detailsService.loadUserByUsername(user.getUsername());

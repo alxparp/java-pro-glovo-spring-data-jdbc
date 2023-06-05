@@ -3,6 +3,8 @@ package com.glovo.converter;
 import com.glovo.entity.Product;
 import com.glovo.model.ProductDTO;
 
+import java.util.ArrayList;
+
 public class ProductConverter {
 
     public static ProductDTO productToProductDTO(Product product) {
@@ -18,6 +20,7 @@ public class ProductConverter {
                 .productId(productDTO.getId())
                 .name(productDTO.getName())
                 .cost(productDTO.getCost())
+                .orders(new ArrayList<>())
                 .build();
     }
 
