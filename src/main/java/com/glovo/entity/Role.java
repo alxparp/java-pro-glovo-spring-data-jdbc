@@ -17,16 +17,8 @@ import java.util.Set;
 @Table(name = "role")
 public class Role {
 
-    @SequenceGenerator(
-            name = "role_seq",
-            sequenceName = "role_seq",
-            allocationSize = 1
-    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "role_seq"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private Integer roleId;
 
