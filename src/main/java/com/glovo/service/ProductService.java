@@ -3,6 +3,7 @@ package com.glovo.service;
 import com.glovo.converter.ProductConverter;
 import com.glovo.model.ProductDTO;
 import com.glovo.repository.ProductRepository;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.List;
 
 @Service
 public class ProductService {
+
+    private final static Logger logger = Logger.getLogger(ProductService.class);
 
     private final ProductRepository productRepository;
 
