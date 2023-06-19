@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -58,13 +59,14 @@ class OrderControllerMockTest {
 
     @BeforeEach
     void setUp() {
-        products = new ArrayList<>();
-        products.add(Product.builder().name("Burger").cost(30.00).build());
-        products.add(Product.builder().name("Big Mac").cost(90.00).build());
+        products = List.of(
+                Product.builder().name("Burger").cost(30.00).build(),
+                Product.builder().name("Big Mac").cost(90.00).build()
+        );
         order = saveOrder(Order.builder()
                 .date(LocalDate.now())
                 .cost(120.00)
-                .products(new HashSet<>())
+                .products(new ArrayList<>())
                 .build());
         orderExpected = orderToOrderDTO(order);
     }
@@ -136,9 +138,7 @@ class OrderControllerMockTest {
 
     private Order saveOrder(Order order) {
         List<Product> productList = saveProducts(products);
-        for (Product product : productList) {
-            order.addProduct(product);
-        }
+        order.setProducts(productList);
         return orderRepository.save(order);
     }
 }

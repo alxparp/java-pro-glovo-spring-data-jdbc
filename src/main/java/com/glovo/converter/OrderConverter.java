@@ -3,6 +3,7 @@ package com.glovo.converter;
 import com.glovo.entity.Order;
 import com.glovo.model.OrderDTO;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class OrderConverter {
@@ -20,7 +21,7 @@ public class OrderConverter {
                 .orderId(orderDTO.getId())
                 .date(orderDTO.getDate())
                 .cost(orderDTO.getCost())
-                .products(new HashSet<>())
+                .products(new ArrayList<>())
                 .build();
     }
 

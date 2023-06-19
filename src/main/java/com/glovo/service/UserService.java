@@ -8,9 +8,9 @@ import com.glovo.repository.RoleRepository;
 import com.glovo.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.StreamSupport;
 
 import static com.glovo.security.UserRole.ADMIN;
@@ -37,7 +37,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role role = roleRepository.findByRoleName(ADMIN.name());
-        user.addRole(role);
+        user.setRoles(Set.of(role));
 
         return userRepository.save(user);
     }

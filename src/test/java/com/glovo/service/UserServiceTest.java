@@ -58,9 +58,8 @@ class UserServiceTest {
     @Test
     void findAllUsers() {
         // given
-        Iterable<User> userIterable = List.of(user);
         List<UserDTO> userDTOSExpected = List.of(UserConverter.userToUserDTO(user));
-        when(userRepository.findAll()).thenReturn(userIterable);
+        when(userRepository.findAll()).thenReturn(List.of(user));
 
         // when
         List<UserDTO> userDTOSActual = userService.findAllUsers();

@@ -5,6 +5,7 @@ import com.glovo.entity.Role;
 import com.glovo.entity.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.HashSet;
+import java.util.Set;
 
 public class DummyObjects {
 
@@ -19,7 +20,7 @@ public class DummyObjects {
                 .locked(false)
                 .roles(new HashSet<>())
                 .build();
-        user.addRole(getRole());
+        user.setRoles(Set.of(getRole()));
         return user;
     }
 
@@ -29,7 +30,7 @@ public class DummyObjects {
                 .roleName("ADMIN")
                 .permissions(new HashSet<>())
                 .build();
-        role.addPermission(getPermission());
+        role.setPermissions(Set.of(getPermission()));
         return role;
     }
 

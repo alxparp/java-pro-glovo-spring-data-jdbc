@@ -6,6 +6,7 @@ import com.glovo.entity.Order;
 import com.glovo.entity.Product;
 import com.glovo.model.OrderDTO;
 import com.glovo.repository.OrderRepository;
+import com.glovo.repository.ProductRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,13 +15,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -31,7 +28,7 @@ public class OrderServiceTest {
     @Mock
     private OrderRepository orderRepository;
     @Mock
-    private ProductService productService;
+    private ProductRepository productRepository;
     private OrderService orderService;
     private Order order;
     private Integer orderId;
@@ -39,16 +36,14 @@ public class OrderServiceTest {
 
     @BeforeEach
     void setUp() {
-        orderService = new OrderService(orderRepository, productService);
+        orderService = new OrderService(orderRepository, productRepository);
         orderId = 1;
         products = List.of(
                 Product.builder().productId(1).name("Burger").cost(30.00).build(),
                 Product.builder().productId(2).name("Big Mac").cost(90.00).build()
         );
-        order = Order.builder().orderId(orderId).date(LocalDate.now()).cost(120.00).products(new HashSet<>()).build();
-        for (Product product : products) {
-            order.addProduct(product);
-        }
+        order = Order.builder().orderId(orderId).date(LocalDate.now()).cost(120.00).products(new ArrayList<>()).build();
+        order.setProducts(products);
     }
 
     @Test
@@ -78,8 +73,8 @@ public class OrderServiceTest {
 
     private void setMockForEachProduct(List<Product> products) {
         for (Product product : products)
-            when(productService.get(Mockito.eq(product.getProductId())))
-                    .thenReturn(ProductConverter.productToProductDTO(product));
+            when(productRepository.findById(Mockito.eq(product.getProductId())))
+                    .thenReturn(Optional.of(product));
     }
 
     @Test

@@ -1,11 +1,13 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/glovo
     username: postgres
     password: root
-
-  sql:
-    init:
-      mode: embedded
-      schema-locations: classpath:props/schema-prod.sql
-      data-locations: classpath:props/data.sql
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true

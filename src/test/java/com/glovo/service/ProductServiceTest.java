@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -33,7 +34,12 @@ public class ProductServiceTest {
     void setUp() {
         productService = new ProductService(productRepository);
         productId = 1;
-        product = Product.builder().productId(productId).name("Burger").cost(50.0).build();
+        product = Product.builder()
+                .productId(productId)
+                .name("Burger")
+                .cost(50.0)
+                .orders(new ArrayList<>())
+                .build();
     }
 
     @Test
