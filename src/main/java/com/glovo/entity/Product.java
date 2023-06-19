@@ -16,16 +16,8 @@ import java.util.List;
 @Table(name = "product")
 public class Product {
 
-    @SequenceGenerator(
-            name = "product_seq",
-            sequenceName = "product_seq",
-            allocationSize = 1
-    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "product_seq"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Integer productId;
 
