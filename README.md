@@ -6,7 +6,7 @@ The purpose of this project is the practice of the technologies which are descri
 
 Mainly for manipulating data from database is used the "Jpa Repository", extending which, were created specific interfaces. Some methods use HQL-queries.
 
-The services provide opportunities for sending messages to users, to register and search the users, to confirm the tokens (at the same time, it's worth noting, if user didn't pass the confirmation in within a certain number of minutes - the token becomes invalid). In order to debug the code was added the logging and all log's information will be saved in a specific file. The services are working with services, the entities - with models, that's why before sending information to the controllers, entites are converted to DTO.
+The services provide opportunities for sending messages to users, to register and search the users, to confirm the tokens (at the same time, it's worth noting, if user didn't pass the confirmation in within a certain number of minutes - the token becomes invalid). In order to debug the code was added the logging and all log's information will be saved in a specific file. The services are working with entities, the controllers - with models, that's why before sending information to the controllers, entites are converted to DTO.
 
 Web-controllers navigate between pages, perform checks, and pass information to the services for processing. The access to these controllers are passing via url using REST-style, it simplifies readability. 
 
