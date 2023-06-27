@@ -1,6 +1,6 @@
 # Glovo Spring
 
-This project is a continuation of the "Java Pro Glovo" project and also it is a educational project.
+This project is a continuation of the "Java Pro Glovo" project and also it is an educational project.
 
 The purpose of this project is the practice of the technologies which are described below, as well as user registration, sending a token to the mail to confirm the email, display all users after sign in.
 
